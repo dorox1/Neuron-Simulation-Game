@@ -5,10 +5,24 @@ Walls should always be drawn from closest to the cell body to farther away, for 
 class CellWall extends ChargeSurface{
   Vect2 xy1; //wall start
   Vect2 xy2; //vector representing the direction and length of the wall
+  int[] charge2 = {};
+  boolean[] chargeVisible2 = {}; //determines whether to draw this particular section
   
   CellWall(int si, float x1, float y1, float x2, float y2) {
     //initializes a cell wall object
     super(si);
+    
+    charge2 = new int[size];
+    //sets the size of the charge array for the closer wall to match the size of the cell wall
+    for (int i = 0; i < si; i++) {
+      charge2[i] = 0;
+      //initial charge is zero
+    }
+    chargeVisible2 = new boolean[size];
+    for (int i = 0; i < si; i++) {
+      chargeVisible2[i] = true;
+      //initially, all sections are visible
+    }
     
     //sets the array of charges to initial values
     xy1 = new Vect2(x1, y1);
